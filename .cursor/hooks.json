@@ -1,0 +1,17 @@
+{
+    "version": 1,
+    "hooks": {
+        "afterFileEdit": [
+            {
+                "command": ".cursor/hooks/format.sh",
+                "description": "Auto-format edited files"
+            }
+        ],
+        "stop": [
+            {
+                "command": ".cursor/hooks/review-on-complete.sh",
+                "description": "Trigger contextual code review when agent completes source code changes"
+            }
+        ]
+    }
+}
