@@ -112,7 +112,7 @@ def run_linter(file_path, max_errors=10):
             except FileNotFoundError:
                 # flake8 not installed, try py_compile
                 result = subprocess.run(
-                    ['python', '-m', 'py_compile', file_path],
+                    ['python3', '-m', 'py_compile', file_path],
                     capture_output=True,
                     text=True,
                     timeout=10
