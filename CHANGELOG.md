@@ -11,6 +11,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 ### Changed
+- Phase 3: Testing Integration — test-writer agent, critical-path TDD (#16)
+- End-to-end test: critical task with red-phase tests -> builder greens -> validator confirms (#20)
+- Create testing-strategy.md context file (#19)
 - Update /build command to invoke test-writer for critical tasks only (#18)
 - Create test-writer.md agent (sonnet, red-phase TDD for critical logic) (#17)
 - Phase 2: Planning and Specs — spec-analyst, /spec, /plan commands (#10)

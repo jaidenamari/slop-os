@@ -37,10 +37,14 @@ BLOCKED_PATTERNS=(
     "git push -f"
     "git reset --hard"
     "git clean -f"
-    "git checkout ."
-    "git restore ."
+    "git checkout \."
+    "git restore \."
     "chmod -R 777"
     ":(){ :|:& };:"
+    "mkfs"
+    "dd if=/dev/zero"
+    "\| bash"
+    "\| sh"
 )
 
 for pattern in "${BLOCKED_PATTERNS[@]}"; do
