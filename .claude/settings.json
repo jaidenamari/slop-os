@@ -52,6 +52,11 @@
             "type": "command",
             "command": "python3 -c \"import os,runpy;d=os.getcwd()\nwhile not os.path.isdir(os.path.join(d,'.claude')):\n p=os.path.dirname(d)\n if p==d:break\n d=p\nrunpy.run_path(os.path.join(d,'.claude','hooks','post-edit-check.py'),run_name='__main__')\"",
             "timeout": 5
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/post-write-lint.sh",
+            "timeout": 5
           }
         ]
       }

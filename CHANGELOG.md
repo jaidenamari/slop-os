@@ -11,6 +11,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 ### Changed
+- Phase 5: Hooks and Polish — post-write-lint, /review, /scout commands (#25)
+- Create /scout command (invoke scout, present findings) (#28)
+- Create /review command (ad-hoc validator invocation) (#27)
+- Create post-write-lint.sh hook (auto-lint after writes) (#26)
 - Phase 4: The Sieve — Sarcasmotron setup, ROAST_ME generation (#21)
 - Practice the Roast loop on a real critical task and refine (#24)
 - Write Sarcasmotron setup guide (context/sarcasmotron-setup.md) (#23)
