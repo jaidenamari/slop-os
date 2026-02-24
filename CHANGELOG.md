@@ -11,6 +11,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 ### Changed
+- Phase 4: The Sieve — Sarcasmotron setup, ROAST_ME generation (#21)
+- Practice the Roast loop on a real critical task and refine (#24)
+- Write Sarcasmotron setup guide (context/sarcasmotron-setup.md) (#23)
+- Update /build to generate ROAST_ME.md for critical tasks after validator PASS (#22)
 - Phase 3: Testing Integration — test-writer agent, critical-path TDD (#16)
 - End-to-end test: critical task with red-phase tests -> builder greens -> validator confirms (#20)
 - Create testing-strategy.md context file (#19)

@@ -99,25 +99,57 @@ chainlink close $ARGUMENTS
 Tell the developer the task is ready to commit.
 
 **If critical:**
-Generate `.claude/state/ROAST_ME.md` with three sections:
-1. **The Intent** — acceptance criteria from the spec
-2. **The Change** — compact git diff focused on the functions that changed
-3. **The Cowardice** — uncertainty items from the builder's report
+Generate `.claude/state/ROAST_ME.md` by following these steps exactly:
+
+1. **Gather the three sections:**
+   - **The Intent:** Pull the acceptance criteria from the Chainlink issue (`chainlink show $ARGUMENTS`). If a spec.md exists, include the relevant acceptance criteria from it. This tells the reviewer what the code is *supposed* to do.
+   - **The Change:** Run `git diff HEAD` (or `git diff` for unstaged changes) and extract only the functions/blocks that changed. Strip file headers, context lines, and unrelated hunks. Keep it compact — the reviewer needs to see *what changed*, not the whole repo.
+   - **The Cowardice:** Extract uncertainty items from the builder's report (the "Cowardice" section). These are decisions the builder was unsure about — edge cases, assumptions, naming choices, missing validations. This tells the reviewer exactly where to apply pressure.
+
+2. **Write the file** to `.claude/state/ROAST_ME.md` using this format:
+
+```markdown
+# ROAST_ME — Issue #[id]: [title]
+
+## The Intent
+[Acceptance criteria. What this code must do.]
+
+## The Change
+[Compact diff of changed functions/blocks. Code only, no noise.]
+
+## The Cowardice
+[Builder's uncertainty items. Where pressure should be applied.]
+```
+
+3. **Log and notify:**
 
 ```bash
 chainlink session action "Validator PASS for critical task #$ARGUMENTS. ROAST_ME.md generated. Awaiting Roast."
 ```
-Tell the developer to bridge the ROAST_ME.md to Sarcasmotron.
+
+Tell the developer:
+- The ROAST_ME.md is ready at `.claude/state/ROAST_ME.md`
+- Open a **new chat** in the Sarcasmotron Gem (fresh context every time)
+- Paste the full contents of ROAST_ME.md — no pleasantries, no explanation
+- Read the critique, judge which issues are legitimate vs hallucinated
+- Bring legitimate issues back here for the builder to fix
 
 ## Step 5: After Roast (if critical)
 
-If the developer returns with Roast feedback:
-- Feed legitimate issues to the builder
-- Re-validate
-- Generate new ROAST_ME.md if needed
-- Repeat until ZERO-SLOP or developer is satisfied
+The developer will return with Sarcasmotron's critique. For each issue raised:
+
+1. **Triage the feedback.** The developer has already judged which criticisms are legitimate. Accept their judgement.
+2. **Feed legitimate issues to the builder.** Re-invoke the builder with the specific issues to fix. Include the original task context plus the roast feedback.
+3. **Re-validate.** Run the validator again after the builder fixes.
+4. **Re-generate ROAST_ME.md** if the developer wants another roast round. Follow the same generation process from Step 4.
+5. **Repeat** until the developer reports ZERO-SLOP (Sarcasmotron found no real issues) or is satisfied.
+
+When the roast loop is complete:
 
 ```bash
+chainlink session action "Roast loop complete for critical task #$ARGUMENTS: [summary of what was fixed from roast feedback]"
 chainlink close $ARGUMENTS
 chainlink session action "Task #$ARGUMENTS complete: [summary]"
 ```
+
+Tell the developer the task is ready to commit.
