@@ -11,6 +11,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 ### Changed
+- Phase 6: Skills and Meta — meta-agent, /new-agent, project skills (#29)
+- Create vdd-workflow skill (SKILL.md + convergence reference) (#33)
+- Create context/architecture.md for this project (#32)
 - Create /new-agent command (#31)
 - Create meta-agent.md (sonnet, agent builder with archetype library) (#30)
 - Phase 5: Hooks and Polish — post-write-lint, /review, /scout commands (#25)
