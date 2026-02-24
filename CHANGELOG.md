@@ -11,6 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 ### Changed
+- Update /build command to invoke test-writer for critical tasks only (#18)
 - Create test-writer.md agent (sonnet, red-phase TDD for critical logic) (#17)
 - Phase 2: Planning and Specs — spec-analyst, /spec, /plan commands (#10)
 - End-to-end test: /spec -> /plan -> /build pipeline (#15)

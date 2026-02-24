@@ -27,13 +27,39 @@ chainlink session work $ARGUMENTS
 
 Check the issue labels for triage classification:
 - **routine** label → Skip to Step 3 (no test-writer)
-- **critical** label → Invoke the test-writer agent first to create red-phase tests, THEN proceed to Step 3
+- **critical** label → Invoke the test-writer agent first (Step 2a), THEN proceed to Step 3
 
 If no label is set, treat as **routine** and note this in the session log.
 
 ```bash
 chainlink session action "Triage: [routine|critical] for issue #$ARGUMENTS"
 ```
+
+### Step 2a: Test Writer (critical path only)
+
+Invoke the **test-writer** agent with:
+- The issue requirements and acceptance criteria from the `chainlink show` output in Step 1
+- The critical logic that needs test coverage (identified from the issue description and labels)
+- The spec context (pass `spec.md` if it exists at `.claude/spec.md`)
+- Any relevant scout findings about existing test infrastructure (test framework, conventions, file locations)
+
+The test-writer creates red-phase tests that MUST FAIL initially. It will run the tests itself and confirm all failures are behavioral (not syntax or import errors).
+
+**If test-writer reports BLOCKED:** Stop the pipeline. Log the blocker. Do NOT proceed to the builder.
+
+```bash
+chainlink session action "Test Writer BLOCKED for critical task #$ARGUMENTS: [blocker reason]"
+```
+
+Escalate to human with the test-writer's report.
+
+**If test-writer reports COMPLETE:** Log the test file paths and proceed to Step 3. Pass the test files to the builder so it knows which tests to make pass.
+
+```bash
+chainlink session action "Test Writer COMPLETE for critical task #$ARGUMENTS: [test files created]"
+```
+
+Carry forward the test-writer's report (test file paths and failure confirmations) as context for the builder in Step 3.
 
 ## Step 3: Builder
 
