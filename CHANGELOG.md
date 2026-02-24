@@ -11,6 +11,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 ### Changed
+- Create /new-agent command (#31)
+- Create meta-agent.md (sonnet, agent builder with archetype library) (#30)
 - Phase 5: Hooks and Polish — post-write-lint, /review, /scout commands (#25)
 - Create /scout command (invoke scout, present findings) (#28)
 - Create /review command (ad-hoc validator invocation) (#27)
